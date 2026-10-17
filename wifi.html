@@ -30,6 +30,8 @@ main>div{width:100%;max-width:30rem}
 h1{font-family:Fraunces,Georgia,serif;font-weight:800;font-size:clamp(2.6rem,12vw,4.75rem);line-height:1.02;letter-spacing:-.02em;margin:0 0 1.25rem;text-wrap:balance}
 h1 em{color:var(--acc);font-weight:700}
 .lede{color:var(--mut);max-width:26rem;margin:0 auto 1.75rem}
+.hint{color:var(--mut);font-size:.93rem;margin:0 0 2rem}
+.again .tick circle,.again .tick path{animation:none;stroke-dashoffset:0}
 .status{display:inline-flex;align-items:center;gap:.6rem;border:1px solid var(--line);background:var(--surf);border-radius:999px;padding:.4rem 1rem;font-size:.93rem;margin-bottom:2rem}
 .status i{width:.55rem;height:.55rem;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok)}
 .status.off i{background:var(--acc);box-shadow:0 0 8px var(--acc)}
@@ -51,8 +53,8 @@ footer .w{display:flex;justify-content:center;gap:.4rem 1.5rem;flex-wrap:wrap;te
   <div>
     <svg class="tick" id="tick" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="28"/><path d="M20 33l8 8 16-17"/></svg>
     <h1 id="head">You're <em>connected.</em></h1>
-    <p class="lede" id="msg">You're on the Wi-Fi and online. This network was installed and is managed by Ivin Networks.</p>
-    <div class="status" id="status" role="status"><i></i><span id="stxt">Checking connection…</span></div>
+    <p class="lede" id="msg">You're on the Wi-Fi. This network was installed and is managed by Ivin Networks.</p>
+    <p class="hint" id="hint" role="status">Finishing connection…</p>
     <div class="cta"><a class="btn" href="https://www.google.com">Start browsing</a><a class="btn o" href="contact.html">Having trouble?</a></div>
   </div>
 </main>
@@ -60,20 +62,13 @@ footer .w{display:flex;justify-content:center;gap:.4rem 1.5rem;flex-wrap:wrap;te
 <footer><div class="w"><span>© 2026 Ivin Networks</span><a href="index.html">ivinnetworks.charlieivin.co.uk</a></div></footer>
 <script>
 (function(){
-  var t=document.getElementById("tick"),s=document.getElementById("status"),x=document.getElementById("stxt"),
-      h=document.getElementById("head"),m=document.getElementById("msg");
-  function update(){
-    if(navigator.onLine){
-      t.classList.remove("off");s.classList.remove("off");x.textContent="Online";
-      h.innerHTML="You're <em>connected.</em>";
-      m.textContent="You're on the Wi-Fi and online. This network was installed and is managed by Ivin Networks.";
-    }else{
-      t.classList.add("off");s.classList.add("off");x.textContent="No internet connection";
-      h.innerHTML="Wi-Fi joined, <em>no internet.</em>";
-      m.textContent="Your device is on the network but can't reach the internet. Try again in a moment, or let us know if it keeps happening.";
-    }
+  var p=new URLSearchParams(location.search),n=parseInt(p.get("r"),10)||0,MAX=3,hint=document.getElementById("hint");
+  if(n>0)document.documentElement.classList.add("again");
+  if(n<MAX){
+    setTimeout(function(){p.set("r",n+1);location.replace(location.pathname+"?"+p.toString());},2500);
+  }else{
+    hint.textContent="All set. Tap Start browsing, then close this window.";
   }
-  window.addEventListener("online",update);window.addEventListener("offline",update);update();
 })();
 </script>
 </body>
