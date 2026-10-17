@@ -55,7 +55,7 @@ footer .w{display:flex;justify-content:center;gap:.4rem 1.5rem;flex-wrap:wrap;te
     <h1 id="head">You're <em>connected.</em></h1>
     <p class="lede" id="msg">You're on the Wi-Fi. This network was installed and is managed by Ivin Networks.</p>
     <p class="hint" id="hint" role="status">Finishing connection…</p>
-    <div class="cta"><a class="btn" href="https://www.google.com">Start browsing</a><a class="btn o" href="contact.html">Having trouble?</a></div>
+    <div class="cta"><a class="btn o" href="contact.html">Having trouble?</a></div>
   </div>
 </main>
 </div>
@@ -65,9 +65,9 @@ footer .w{display:flex;justify-content:center;gap:.4rem 1.5rem;flex-wrap:wrap;te
   var p=new URLSearchParams(location.search),n=parseInt(p.get("r"),10)||0,MAX=3,hint=document.getElementById("hint");
   if(n>0)document.documentElement.classList.add("again");
   if(n<MAX){
-    setTimeout(function(){p.set("r",n+1);location.replace(location.pathname+"?"+p.toString());},2500);
+    setTimeout(function(){p.set("r",n+1);location.replace(location.pathname+"?"+p.toString());},1000);
   }else{
-    hint.textContent="All set. Tap Start browsing, then close this window.";
+    hint.textContent="All set. You can close this window.";
   }
 })();
 </script>
