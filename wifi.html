@@ -62,10 +62,10 @@ footer .w{display:flex;justify-content:center;gap:.4rem 1.5rem;flex-wrap:wrap;te
 <footer><div class="w"><span>© 2026 Ivin Networks</span><a href="index.html">ivinnetworks.charlieivin.co.uk</a></div></footer>
 <script>
 (function(){
-  var p=new URLSearchParams(location.search),n=parseInt(p.get("r"),10)||0,MAX=3,hint=document.getElementById("hint");
+  var p=new URLSearchParams(location.search),n=parseInt(p.get("r"),10)||0,MAX=5,hint=document.getElementById("hint");
   if(n>0)document.documentElement.classList.add("again");
   if(n<MAX){
-    setTimeout(function(){p.set("r",n+1);location.replace(location.pathname+"?"+p.toString());},1000);
+    setTimeout(function(){p.set("r",n+1);location.replace(location.pathname+"?"+p.toString());},2000);
   }else{
     hint.textContent="All set. You can close this window.";
   }
